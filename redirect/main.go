@@ -15,20 +15,32 @@ func main() {
 	})
 
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("hit /")
 		http.SetCookie(w, &http.Cookie{Name: "c1", Value: "root2", Path: "/fred"})
-		http.Redirect(w, r, "/larry", 301)
+		http.Redirect(w, r, "/larry", 307)
 	})
 
-	mux.Handle("/larry", http.RedirectHandler("/bob", 302))
+	mux.Handle("/larry", http.RedirectHandler("/bob", 307))
 
 	mux.HandleFunc("/bob", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("hit /bob")
 		http.SetCookie(w, &http.Cookie{Name: "c2", Value: "bob"})
-		http.Redirect(w, r, "/fred", 303)
+		http.Redirect(w, r, "/fred", 307)
 	})
 
 	mux.HandleFunc("/fred", func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(204)
+		fmt.Println("hit /fred")
+		//w.WriteHeader(204)
 		w.Write([]byte("this is fred"))
+	})
+
+	mux.HandleFunc("/richard", func(w http.ResponseWriter, r *http.Request) {
+		requestURL := r.URL
+		requestURI := r.RequestURI
+		fmt.Println("URL=", r.URL)
+		fmt.Println("requestURL=", requestURL.String())
+		fmt.Println("requestURI=", requestURI)
+		w.Write([]byte("this is richard"))
 	})
 
 	http.ListenAndServe(":3000", mux)
