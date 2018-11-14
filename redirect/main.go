@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 )
 
@@ -43,5 +44,7 @@ func main() {
 		w.Write([]byte("this is richard"))
 	})
 
-	http.ListenAndServe(":3000", mux)
+	log.Fatal(http.ListenAndServe(":3000", mux))
+
+	fmt.Println("EXITING...")
 }
