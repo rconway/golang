@@ -27,4 +27,15 @@ func main() {
 	p.Summarise()
 	p.SetName("barry")
 	p.Summarise()
+
+	// Test student
+	fmt.Println("---")
+	s := hierarchy.NewStudent(11, "james dean", "raglan")
+	s.Summarise()
+
+	// Modify student
+	s.SetAge(42)
+	s.SetName("Stephen Hawking")
+	s.SetSchool("Cambridge")
+	s.Summarise()
 }
