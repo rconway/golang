@@ -25,5 +25,6 @@ func main() {
 	fmt.Println("---")
 	p.SetAge(123)
 	p.Summarise()
-
+	p.SetName("barry")
+	p.Summarise()
 }

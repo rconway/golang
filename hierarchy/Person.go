@@ -9,16 +9,20 @@ type person struct {
 	name string
 }
 
-func (p person) sayName() {
-	fmt.Printf("Name of person is: %v\n", p.name)
+func (p person) GetName() string {
+	return p.name
+}
+
+func (p *person) SetName(name string) {
+	p.name = name
 }
 
 func (p person) Summarise() {
 	p.human.Summarise()
-	p.sayName()
+	fmt.Printf("Name of person is: %v\n", p.name)
 }
 
 func NewPerson(age int, name string) *person {
-    //return &person{ human{age}, name }
-    return &person{ *NewHuman(age), name }
+	//return &person{ human{age}, name }
+	return &person{*NewHuman(age), name}
 }
