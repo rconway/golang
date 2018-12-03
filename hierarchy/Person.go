@@ -4,16 +4,21 @@ import (
 	"fmt"
 )
 
-type Person struct {
-	Human
-	Name string
+type person struct {
+	human
+	name string
 }
 
-func (p Person) sayName() {
-	fmt.Printf("Name of person is: %v\n", p.Name)
+func (p person) sayName() {
+	fmt.Printf("Name of person is: %v\n", p.name)
 }
 
-func (p Person) Summarise() {
-	p.Human.Summarise()
+func (p person) Summarise() {
+	p.human.Summarise()
 	p.sayName()
+}
+
+func NewPerson(age int, name string) *person {
+    //return &person{ human{age}, name }
+    return &person{ *NewHuman(age), name }
 }

@@ -8,17 +8,22 @@ import (
 func main() {
 	// Test human
 	fmt.Println("---")
-	h := hierarchy.Human{12}
+	h := hierarchy.NewHuman(12)
 	h.Summarise()
 
 	// Test human again
 	fmt.Println("---")
-	h = hierarchy.Human{34}
+	h = hierarchy.NewHuman(34)
 	h.Summarise()
 
 	// Test person
 	fmt.Println("---")
-	p := hierarchy.Person{hierarchy.Human{56}, "fredbob"}
+	p := hierarchy.NewPerson(56, "fredbob")
+	p.Summarise()
+
+	// Modify person
+	fmt.Println("---")
+	p.SetAge(123)
 	p.Summarise()
 
 }
