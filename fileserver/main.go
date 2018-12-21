@@ -23,7 +23,7 @@ func serveRootDir() {
 // Serve all files under the 'public' directory, stripping off the '/public' prefix so they appear
 // as if they are located from the root.
 func servePublicDir() http.Handler {
-	return http.StripPrefix("/public/", http.FileServer(http.Dir("./public")))
+	return http.StripPrefix("/resources/", http.FileServer(http.Dir("./public")))
 }
 
 func main() {
@@ -31,7 +31,7 @@ func main() {
 
 	// Routing
 	http.HandleFunc("/", serveIndex)
-	http.Handle("/public/", servePublicDir())
+	http.Handle("/resources/", servePublicDir())
 
 	// Start listening
 	listenAddress := fmt.Sprintf("%s:%d", hostname, port)
