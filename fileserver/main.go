@@ -34,7 +34,10 @@ func main() {
 	http.Handle("/resources/", servePublicDir())
 
 	// Disable favicon
-	http.Handle("/favicon.ico", http.NotFoundHandler())
+	//http.Handle("/favicon.ico", http.NotFoundHandler())
+	http.HandleFunc("/favicon.ico", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./public/favicon.ico")
+	})
 
 	// Start listening
 	listenAddress := fmt.Sprintf("%s:%d", hostname, port)
