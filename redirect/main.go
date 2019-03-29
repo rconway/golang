@@ -18,15 +18,15 @@ func main() {
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("hit /")
 		http.SetCookie(w, &http.Cookie{Name: "c1", Value: "root2", Path: "/fred"})
-		http.Redirect(w, r, "/larry", 307)
+		http.Redirect(w, r, "http://127.0.0.2:3000/larry", 307)
 	})
 
-	mux.Handle("/larry", http.RedirectHandler("/bob", 307))
+	mux.Handle("/larry", http.RedirectHandler("http://127.0.0.3:3000/bob", 307))
 
 	mux.HandleFunc("/bob", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("hit /bob")
 		http.SetCookie(w, &http.Cookie{Name: "c2", Value: "bob"})
-		http.Redirect(w, r, "/fred", 307)
+		http.Redirect(w, r, "http://127.0.0.4:3000/fred", 307)
 	})
 
 	mux.HandleFunc("/fred", func(w http.ResponseWriter, r *http.Request) {
