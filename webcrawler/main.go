@@ -25,8 +25,15 @@ func Crawl(url string, depth int, fetcher Fetcher) {
 		return
 	}
 	fmt.Printf("found: %s %q\n", url, body)
+	done := make(chan bool)
 	for _, u := range urls {
-		Crawl(u, depth-1, fetcher)
+		go func(url string) {
+			Crawl(url, depth-1, fetcher)
+			done <- true
+		}(u)
+	}
+	for range urls {
+		<-done
 	}
 	return
 }
