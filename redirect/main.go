@@ -32,7 +32,7 @@ func main() {
 	mux.HandleFunc("/fred", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("hit /fred")
 		//w.WriteHeader(204)
-		w.Write([]byte("this is fred"))
+		w.Write([]byte("<body><h6 style=\"text-align: center;\">TBD - result is here</h6></body>"))
 	})
 
 	mux.HandleFunc("/richard", func(w http.ResponseWriter, r *http.Request) {
