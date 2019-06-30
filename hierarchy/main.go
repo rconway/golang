@@ -2,23 +2,24 @@ package main
 
 import (
 	"fmt"
-	"github.com/rconway/golang/hierarchy"
+
+	"github.com/rconway/golang/hierarchy/types"
 )
 
 func main() {
 	// Test human
 	fmt.Println("---")
-	h := hierarchy.NewHuman(12)
+	h := types.NewHuman(12)
 	h.Summarise()
 
 	// Test human again
 	fmt.Println("---")
-	h = hierarchy.NewHuman(34)
+	h = types.NewHuman(34)
 	h.Summarise()
 
 	// Test person
 	fmt.Println("---")
-	p := hierarchy.NewPerson(56, "fredbob")
+	p := types.NewPerson(56, "fredbob")
 	p.Summarise()
 
 	// Modify person
@@ -30,7 +31,7 @@ func main() {
 
 	// Test student
 	fmt.Println("---")
-	s := hierarchy.NewStudent(11, "james dean", "raglan")
+	s := types.NewStudent(11, "james dean", "raglan")
 	s.Summarise()
 
 	// Modify student

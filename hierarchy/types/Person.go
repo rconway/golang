@@ -1,4 +1,4 @@
-package hierarchy
+package types
 
 import (
 	"fmt"
