@@ -44,6 +44,9 @@ func main() {
 		w.Write([]byte("this is richard"))
 	})
 
+	// Serve some static content - the current directory under the url path '/public'.
+	mux.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir(""))))
+
 	log.Fatal(http.ListenAndServe(":3000", mux))
 
 	fmt.Println("EXITING...")
