@@ -6,6 +6,16 @@ import (
 	"net/http"
 )
 
+// Define my own middleware - see https://www.alexedwards.net/blog/making-and-using-middleware
+func myMiddleware(next http.Handler) http.Handler {
+	fn := func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("[myMiddleware]: START")
+		next.ServeHTTP(w, r)
+		fmt.Println("[myMiddleware]: END")
+	}
+	return http.HandlerFunc(fn)
+}
+
 func main() {
 	fmt.Println("Hello, world!")
 
@@ -35,14 +45,15 @@ func main() {
 		w.Write([]byte("<body><h6 style=\"text-align: center;\">TBD - result is here</h6></body>"))
 	})
 
-	mux.HandleFunc("/richard", func(w http.ResponseWriter, r *http.Request) {
+	// Using my middleware - see https://www.alexedwards.net/blog/making-and-using-middleware
+	mux.Handle("/richard", myMiddleware(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		requestURL := r.URL
 		requestURI := r.RequestURI
 		fmt.Println("URL=", r.URL)
 		fmt.Println("requestURL=", requestURL.String())
 		fmt.Println("requestURI=", requestURI)
 		w.Write([]byte("this is richard"))
-	})
+	})))
 
 	// Serve some static content - the current directory under the url path '/public'.
 	mux.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir(""))))
