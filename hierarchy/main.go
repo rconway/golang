@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/rconway/hierarchy/types"
+	"github.com/rconway/golang/hierarchy/types"
 )
 
 func main() {

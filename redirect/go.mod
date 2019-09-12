@@ -1,3 +1,3 @@
-module github.com/rconway/redirect
+module github.com/rconway/golang/redirect
 
 go 1.12

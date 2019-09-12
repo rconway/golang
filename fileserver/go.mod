@@ -1,3 +1,3 @@
-module github.com/rconway/fileserver
+module github.com/rconway/golang/fileserver
 
 go 1.12

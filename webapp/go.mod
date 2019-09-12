@@ -1,4 +1,4 @@
-module github.com/rconway/webapp
+module github.com/rconway/golang/webapp
 
 go 1.12
 
