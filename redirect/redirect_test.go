@@ -26,7 +26,7 @@ func tryConnection(t *testing.T) {
 		if bodyErr != nil {
 			t.Error("problem with body")
 		} else {
-			exp := "this is fred"
+			exp := "<body><h6 style=\"text-align: center;\">TBD - result is here</h6></body>"
 			if string(buf) != exp {
 				t.Errorf("the body is wrong: expected %s, got %s", exp, buf)
 			}
@@ -37,7 +37,7 @@ func tryConnection(t *testing.T) {
 func TestRedirect(t *testing.T) {
 	t.Logf("starting test of Redirect at %s...", time.Now().Format("2006/01/02 15:04:05.000"))
 	go main()
-	//time.Sleep(time.Second * 1)
+	time.Sleep(time.Second * 1)
 	tryConnection(t)
 	t.Logf("...done test of Redirect at %s...", time.Now().Format("2006/01/02 15:04:05.000"))
 }
